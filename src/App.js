@@ -1,7 +1,9 @@
 import logo from './logo.svg';
 import './App.css';
 
-function App() {
+const urlPlatzi = 'https://platzi.com/';
+
+function App(props) {
   return (
     <div className="App">
       <header className="App-header">
@@ -9,13 +11,15 @@ function App() {
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
+        {props.children}
+        {props.despedida}
         <a
           className="App-link"
-          href="https://reactjs.org"
+          href={urlPlatzi}
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React
+          Aprende React con Platzi
         </a>
       </header>
     </div>
