@@ -3,9 +3,9 @@ import React from "react";
 function TodoList(props) {
     return (
         <section>
-            <ul>
+            <div>
                 {props.children}
-            </ul>
+            </div>
         </section>
     );
 }
