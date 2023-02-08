@@ -1,8 +1,10 @@
 import React from "react";
 
 function TodoSearch() {
+    const [searchValue, setSearchValue] = React.useState('');
+
     const onSearchValueChange = (event) => {
-        console.log(event.target.value);
+        setSearchValue(event.target.value);
     };
 
     return (
@@ -11,7 +13,9 @@ function TodoSearch() {
                 className="col-12 form-control form-control-lg text-left"
                 placeholder="Buscar una tarea..."
                 onChange={onSearchValueChange}
+                value={searchValue}
             />
+            -->{searchValue}
         </div>
     );
 }
