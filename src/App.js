@@ -10,6 +10,7 @@ const defaultTodos = [
   { text: "Hacer mercado", completed: false },
   { text: "Pasear al perro", completed: true },
   { text: "Cortar manzana", completed: true },
+  { text: "Comprar zapatos", completed: false },
 ];
 
 function App() {
@@ -29,6 +30,20 @@ function App() {
   } else {
     searchedTodos = todos;
   }
+
+  const completeToggleTodo = (text) => {
+    const todoIndex = todos.findIndex(todo => todo.text === text);
+    const newTodos = [...todos];
+    newTodos[todoIndex].completed = !todos[todoIndex].completed;
+    setTodos(newTodos);
+  };
+
+  const deleteTodo = (text) => {
+    const todoIndex = todos.findIndex(todo => todo.text === text);
+    const newTodos = [...todos];
+    newTodos.splice(todoIndex, 1);
+    setTodos(newTodos);
+  };
 
   return (
     <React.Fragment>
@@ -51,6 +66,8 @@ function App() {
                   key={index}
                   text={todo.text}
                   completed={todo.completed}
+                  onComplete={() => completeToggleTodo(todo.text)}
+                  onDelete={() => deleteTodo(todo.text)}
                 />
               ))}
             </TodoList>
