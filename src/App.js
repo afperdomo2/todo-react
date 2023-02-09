@@ -63,7 +63,7 @@ function App() {
             <TodoList>
               {searchedTodos.map((todo, index) => (
                 <TodoItem
-                  key={index}
+                  key={todo.text}
                   index={index}
                   text={todo.text}
                   completed={todo.completed}
