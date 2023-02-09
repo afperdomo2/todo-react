@@ -1,20 +1,23 @@
 import React from "react";
 
-function TodoCounter() {
+function TodoCounter({ total, completed }) {
+
+    const percentage = Math.round((completed * 100) / total);
+
     return (
         <>
-            <h4 className="text-secondary mt-4">Has completado 1 de 5 tareas</h4>
+            <h4 className="text-secondary mt-4">Has completado {completed} de {total} tareas</h4>
             <div className="progress mb-4">
                 <div
-                    className="progress-bar bg-info"
+                    className={`progress-bar bg-${percentage === 100 ? 'success' : 'info'}`}
                     role="progressbar"
                     aria-label="Basic example"
-                    aria-valuenow="75"
+                    aria-valuenow={percentage}
                     aria-valuemin="0"
                     aria-valuemax="100"
-                    style={{ width: "75%" }}
+                    style={{ width: `${percentage}%` }}
                 >
-                    75%
+                    {percentage === 100 ? 'completado' : `${percentage} %`}
                 </div>
             </div>
         </>
