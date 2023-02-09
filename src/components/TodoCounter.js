@@ -2,7 +2,7 @@ import React from "react";
 
 function TodoCounter({ total, completed }) {
 
-    const percentage = Math.round((completed * 100) / total);
+    const percentage = Math.round((completed * 100) / total) || 0;
 
     return (
         <>

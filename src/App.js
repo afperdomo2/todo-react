@@ -64,6 +64,7 @@ function App() {
               {searchedTodos.map((todo, index) => (
                 <TodoItem
                   key={index}
+                  index={index}
                   text={todo.text}
                   completed={todo.completed}
                   onComplete={() => completeToggleTodo(todo.text)}
