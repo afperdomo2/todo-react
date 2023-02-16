@@ -1,34 +1,6 @@
 import React from "react";
 import { AppUI } from "./appUI";
-
-/**
- * Custom Hook para el local storage
- * @param {string} itemName Nombre del local storage
- * @param {array} initialValue Valores iniciales
- * @return {array}
- */
-function useLocalStorage(itemName, initialValue) {
-  const localStorageItem = localStorage.getItem(itemName);
-
-  let parsedItem = initialValue;
-  if (!localStorageItem) {
-    localStorage.setItem(itemName, JSON.stringify(initialValue));
-  } else {
-    parsedItem = JSON.parse(localStorageItem);
-  }
-
-  const [item, setItem] = React.useState(parsedItem);
-
-  const saveItem = (newItem) => {
-    setItem(newItem);
-    localStorage.setItem(itemName, JSON.stringify(newItem));
-  };
-
-  return [
-    item,
-    saveItem,
-  ];
-}
+import { useLocalStorage } from "../Hooks/localStorage";
 
 function App() {
   const [todos, saveTodos] = useLocalStorage('TODOS_V1', []);
