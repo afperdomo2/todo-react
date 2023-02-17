@@ -7,7 +7,7 @@ function TodoSearch({ searchValue, setSearchValue }) {
     };
 
     return (
-        <div className="col-12 my-5">
+        <div className="col-12 my-4">
             <input
                 className="col-12 form-control form-control-lg text-left"
                 placeholder="Busca una tarea..."
