@@ -1,27 +1,33 @@
 import React from "react";
+import { TodoContext } from "../App/Context/todo";
 
-function TodoCounter({ total, completed }) {
+function TodoCounter() {
+  const { totalTodos, completedTodos } = React.useContext(TodoContext);
 
-    const percentage = Math.round((completed * 100) / total) || 0;
+  const percentage = Math.round((completedTodos * 100) / totalTodos) || 0;
 
-    return (
-        <>
-            <h4 className="text-secondary mt-4">Has completado {completed} de {total} tareas</h4>
-            <div className="progress mb-4">
-                <div
-                    className={`progress-bar bg-${percentage === 100 ? 'success' : 'info'}`}
-                    role="progressbar"
-                    aria-label="Basic example"
-                    aria-valuenow={percentage}
-                    aria-valuemin="0"
-                    aria-valuemax="100"
-                    style={{ width: `${percentage}%` }}
-                >
-                    {percentage === 100 ? 'completado' : `${percentage} %`}
-                </div>
-            </div>
-        </>
-    );
+  return (
+    <>
+      <h4 className="text-secondary mt-4">
+        Has completado {completedTodos} de {totalTodos} tareas
+      </h4>
+      <div className="progress mb-4">
+        <div
+          className={`progress-bar bg-${
+            percentage === 100 ? "success" : "info"
+          }`}
+          role="progressbar"
+          aria-label="Basic example"
+          aria-valuenow={percentage}
+          aria-valuemin="0"
+          aria-valuemax="100"
+          style={{ width: `${percentage}%` }}
+        >
+          {percentage === 100 ? "completado" : `${percentage} %`}
+        </div>
+      </div>
+    </>
+  );
 }
 
 export { TodoCounter };

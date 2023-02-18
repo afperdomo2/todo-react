@@ -7,6 +7,9 @@ import { TodoItem } from "../components/TodoItem";
 import { CreateTodoButton } from "../components/CreateTodoButton";
 
 function AppUI() {
+  const { error, loading, searchedTodos, completeToggleTodo, deleteTodo } =
+    React.useContext(TodoContext);
+
   return (
     <React.Fragment>
       <div className="d-flex justify-content-center">
@@ -16,34 +19,24 @@ function AppUI() {
             <TodoCounter />
             <TodoSearch />
 
-            <TodoContext.Consumer>
-              {({
-                error,
-                loading,
-                searchedTodos,
-                completeToggleTodo,
-                deleteTodo,
-              }) => (
-                <TodoList>
-                  {error && <p>Hubo un error</p>}
-                  {loading && <p>Cargando... por favor espera</p>}
-                  {!loading && !searchedTodos.length && (
-                    <p>¡Crea tu primera tarea!</p>
-                  )}
-
-                  {searchedTodos.map((todo, index) => (
-                    <TodoItem
-                      key={todo.text}
-                      index={index}
-                      text={todo.text}
-                      completed={todo.completed}
-                      onComplete={() => completeToggleTodo(todo.text)}
-                      onDelete={() => deleteTodo(todo.text)}
-                    />
-                  ))}
-                </TodoList>
+            <TodoList>
+              {error && <p>Hubo un error</p>}
+              {loading && <p>Cargando... por favor espera</p>}
+              {!loading && !searchedTodos.length && (
+                <p>¡Crea tu primera tarea!</p>
               )}
-            </TodoContext.Consumer>
+
+              {searchedTodos.map((todo, index) => (
+                <TodoItem
+                  key={todo.text}
+                  index={index}
+                  text={todo.text}
+                  completed={todo.completed}
+                  onComplete={() => completeToggleTodo(todo.text)}
+                  onDelete={() => deleteTodo(todo.text)}
+                />
+              ))}
+            </TodoList>
 
             <CreateTodoButton />
           </div>
