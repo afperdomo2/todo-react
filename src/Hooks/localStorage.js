@@ -6,7 +6,7 @@ import React from "react";
  * @param {array} initialValue Valores iniciales
  * @return {array}
  */
-export function useLocalStorage(itemName, initialValue) {
+function useLocalStorage(itemName, initialValue) {
   const [error, setError] = React.useState(false);
   const [loading, setLoading] = React.useState(true);
   const [item, setItem] = React.useState(initialValue);
@@ -51,3 +51,5 @@ export function useLocalStorage(itemName, initialValue) {
     error,
   };
 }
+
+export { useLocalStorage };
