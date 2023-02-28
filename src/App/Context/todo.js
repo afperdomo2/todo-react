@@ -14,11 +14,7 @@ import { useLocalStorage } from "../../Hooks/localStorage";
 const TodoContext = React.createContext();
 
 function TodoProvider(props) {
-  const defaultTodos = [
-    { text: "Hacer mercado", completed: false },
-    { text: "Pasear al perro", completed: true },
-    { text: "Cortar manzana", completed: true },
-  ];
+  const defaultTodos = [];
   const {
     item: todos,
     saveItem: saveTodos,
@@ -38,6 +34,15 @@ function TodoProvider(props) {
   } else {
     searchedTodos = todos;
   }
+
+  const addTodo = (text) => {
+    const newTodos = [...todos];
+    newTodos.push({
+      text: text,
+      completed: false,
+    });
+    saveTodos(newTodos);
+  };
 
   const completeToggleTodo = (text) => {
     const todoIndex = todos.findIndex((todo) => todo.text === text);
@@ -61,9 +66,10 @@ function TodoProvider(props) {
         totalTodos,
         completedTodos,
         searchValue,
-        setSearchValue,
         searchedTodos,
+        setSearchValue,
         completeToggleTodo,
+        addTodo,
         deleteTodo,
       }}
     >

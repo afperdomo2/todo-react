@@ -5,6 +5,8 @@ import { TodoSearch } from "../components/TodoSearch";
 import { TodoList } from "../components/TodoList";
 import { TodoItem } from "../components/TodoItem";
 import { CreateTodoButton } from "../components/CreateTodoButton";
+import { TodoForm } from "../components/TodoForm";
+import { Modal } from "../components/Modal";
 
 function AppUI() {
   const { error, loading, searchedTodos, completeToggleTodo, deleteTodo } =
@@ -37,6 +39,10 @@ function AppUI() {
                 />
               ))}
             </TodoList>
+
+            <Modal>
+              <TodoForm />
+            </Modal>
 
             <CreateTodoButton />
           </div>
