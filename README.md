@@ -39,6 +39,16 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
+### `npm run deploy` or `npm run deploy -- --location=global`
+
+This script uses the gh-pages tool to publish the application to GitHub Pages. The -d option specifies the directory that contains the files to be published, in this case, the "build" directory.
+
+Before running the "deploy" script, the "predeploy" script is executed.
+
+This script is used to build the application before deploying it. The "npm run build" command runs the "build" script that uses react-scripts to build the application for production. The output of this build is saved in the "build" directory, which is used in the "deploy" script.
+
+In summary, the "deploy" script in this package.json file is used to deploy the application to GitHub Pages, after building the application with react-scripts and saving the files in the "build" directory.
+
 ## Learn More
 
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
