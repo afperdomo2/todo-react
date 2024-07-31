@@ -1,9 +1,6 @@
 import React from "react";
-import { TodoContext } from "../App/Context/todo";
 
-function TodoForm() {
-  const { addTodo } = React.useContext(TodoContext);
-
+function TodoForm({ addTodo }) {
   const [newTodoValue, setNewTodoValue] = React.useState("");
 
   const onChange = (event) => {
@@ -16,7 +13,7 @@ function TodoForm() {
       return alert("Escriba una tarea");
     }
     addTodo(newTodoValue);
-    setNewTodoValue('');
+    setNewTodoValue("");
   };
 
   return (

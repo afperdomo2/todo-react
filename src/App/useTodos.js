@@ -7,20 +7,19 @@
  * reduce la necesidad de pasar props de manera repetitiva a través de
  * múltiples niveles de componentes.
  */
-
 import React from "react";
-import { useLocalStorage } from "../../Hooks/localStorage";
+import { useLocalStorage } from "../Hooks/useLocalStorage";
 
-const TodoContext = React.createContext();
-
-function TodoProvider(props) {
+function useTodos() {
   const defaultTodos = [];
   const {
     item: todos,
     saveItem: saveTodos,
+    sincronizeItem: sincronizeTodos,
     loading,
     error,
   } = useLocalStorage("TODOS_V1", defaultTodos);
+
   const [searchValue, setSearchValue] = React.useState("");
 
   const totalTodos = todos.length;
@@ -38,7 +37,7 @@ function TodoProvider(props) {
   const addTodo = (text) => {
     const newTodos = [...todos];
     newTodos.push({
-      text: text,
+      text,
       completed: false,
     });
     saveTodos(newTodos);
@@ -58,24 +57,24 @@ function TodoProvider(props) {
     saveTodos(newTodos);
   };
 
-  return (
-    <TodoContext.Provider
-      value={{
-        loading,
-        error,
-        totalTodos,
-        completedTodos,
-        searchValue,
-        searchedTodos,
-        setSearchValue,
-        completeToggleTodo,
-        addTodo,
-        deleteTodo,
-      }}
-    >
-      {props.children}
-    </TodoContext.Provider>
-  );
+  const states = {
+    loading,
+    error,
+    totalTodos,
+    completedTodos,
+    searchValue,
+    searchedTodos,
+  };
+
+  const stateUpdaters = {
+    setSearchValue,
+    addTodo,
+    completeToggleTodo,
+    deleteTodo,
+    sincronizeTodos,
+  };
+
+  return { states, stateUpdaters };
 }
 
-export { TodoContext, TodoProvider };
+export { useTodos };
