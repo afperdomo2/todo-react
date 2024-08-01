@@ -8,7 +8,8 @@
  * múltiples niveles de componentes.
  */
 import React from "react";
-import { useLocalStorage } from "../Hooks/useLocalStorage";
+
+import { useLocalStorage } from "./useLocalStorage";
 
 function useTodos() {
   const defaultTodos = [];

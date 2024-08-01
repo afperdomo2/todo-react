@@ -11,9 +11,9 @@ import { TodoList } from "../components/TodoList";
 import { TodoSearch } from "../components/TodoSearch";
 import { TodosError } from "../components/TodosError";
 import { TodosLoading } from "../components/TodosLoading";
-import { useTodos } from "./useTodos";
+import { useTodos } from "../hooks/useTodos";
 
-function App() {
+function HomePage() {
   const { states, stateUpdaters } = useTodos();
   const {
     loading,
@@ -81,4 +81,4 @@ function App() {
   );
 }
 
-export default App;
+export { HomePage };
