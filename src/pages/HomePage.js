@@ -63,6 +63,7 @@ function HomePage() {
                 text={todo.text}
                 completed={todo.completed}
                 onComplete={() => completeToggleTodo(todo.text)}
+                onEdit={() => console.log("Editando")}
                 onDelete={() => deleteTodo(todo.text)}
               />
             )}
