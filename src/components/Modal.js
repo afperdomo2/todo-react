@@ -1,10 +1,10 @@
 //import React from "react";
-import ReactDOM from "react-dom";
+import { createPortal } from "react-dom";
 
 function Modal({ children }) {
-  return ReactDOM.createPortal(
+  return createPortal(
     <div
-      className="modal fade"
+      className="modal modal-lg fade"
       id="addModal"
       tabIndex="-1"
       aria-labelledby="addModalLabel"

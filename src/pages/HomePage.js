@@ -13,8 +13,10 @@ import { TodosEmpty } from "../components/TodosEmpty";
 import { TodosError } from "../components/TodosError";
 import { TodosLoading } from "../components/TodosLoading";
 import { useTodos } from "../hooks/useTodos";
+import { useNavigate } from "react-router-dom";
 
 function HomePage() {
+  const navigate = useNavigate();
   const { states, stateUpdaters } = useTodos();
   const {
     loading,
@@ -33,12 +35,18 @@ function HomePage() {
     sincronizeTodos,
   } = stateUpdaters;
 
+  const editTodo = (id) => {
+    navigate(`/edit/${id}`);
+  };
+
   return (
     <div className="d-flex justify-content-center">
       <div className="card col-lg-7 col-md-12 col-sm-12">
-        <div className="card-body">
-          <h1 className="card-header text-primary ps-0">TODO React</h1>
+        <div className="card-header text-primary ps-2">
+          <h1>TODO React</h1>
+        </div>
 
+        <div className="card-body">
           <TodoHeader loading={loading}>
             <TodoCounter
               totalTodos={totalTodos}
@@ -59,12 +67,12 @@ function HomePage() {
             onEmpty={() => <TodosEmpty />}
             render={(todo, index) => (
               <TodoItem
-                key={index}
                 id={todo.id}
+                key={todo.id}
                 text={todo.text}
                 completed={todo.completed}
                 onComplete={() => completeToggleTodo(todo.id)}
-                onEdit={() => console.log("Editando")}
+                onEdit={() => editTodo(todo.id)}
                 onDelete={() => deleteTodo(todo.id)}
               />
             )}
