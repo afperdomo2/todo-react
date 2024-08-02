@@ -10,13 +10,13 @@ function TodoItem(props) {
             type="checkbox"
             defaultChecked={props.completed}
             onClick={props.onComplete}
-            id={`check_${props.index}`}
+            id={`check_${props.id}`}
           />
           <label
             className={`form-check-label ${
               props.completed && "text-success text-decoration-line-through"
             }`}
-            htmlFor={`check_${props.index}`}
+            htmlFor={`check_${props.id}`}
           >
             {props.text}
           </label>

@@ -9,6 +9,7 @@
  */
 import React from "react";
 
+import { newTodoId } from "../utils/totoUtil";
 import { useLocalStorage } from "./useLocalStorage";
 
 function useTodos() {
@@ -19,7 +20,7 @@ function useTodos() {
     sincronizeItem: sincronizeTodos,
     loading,
     error,
-  } = useLocalStorage("TODOS_V1", defaultTodos);
+  } = useLocalStorage("TODOS_V2", defaultTodos);
 
   const [searchValue, setSearchValue] = React.useState("");
 
@@ -37,22 +38,24 @@ function useTodos() {
 
   const addTodo = (text) => {
     const newTodos = [...todos];
+    const id = newTodoId();
     newTodos.push({
+      id,
       text,
       completed: false,
     });
     saveTodos(newTodos);
   };
 
-  const completeToggleTodo = (text) => {
-    const todoIndex = todos.findIndex((todo) => todo.text === text);
+  const completeToggleTodo = (id) => {
+    const todoIndex = todos.findIndex((todo) => todo.id === id);
     const newTodos = [...todos];
     newTodos[todoIndex].completed = !todos[todoIndex].completed;
     saveTodos(newTodos);
   };
 
-  const deleteTodo = (text) => {
-    const todoIndex = todos.findIndex((todo) => todo.text === text);
+  const deleteTodo = (id) => {
+    const todoIndex = todos.findIndex((todo) => todo.id === id);
     const newTodos = [...todos];
     newTodos.splice(todoIndex, 1);
     saveTodos(newTodos);

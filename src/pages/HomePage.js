@@ -9,6 +9,7 @@ import { TodoHeader } from "../components/TodoHeader";
 import { TodoItem } from "../components/TodoItem";
 import { TodoList } from "../components/TodoList";
 import { TodoSearch } from "../components/TodoSearch";
+import { TodosEmpty } from "../components/TodosEmpty";
 import { TodosError } from "../components/TodosError";
 import { TodosLoading } from "../components/TodosLoading";
 import { useTodos } from "../hooks/useTodos";
@@ -55,16 +56,16 @@ function HomePage() {
             searchedTodos={searchedTodos}
             onError={() => <TodosError />}
             onLoading={() => <TodosLoading />}
-            onEmpty={() => <TodosLoading />}
+            onEmpty={() => <TodosEmpty />}
             render={(todo, index) => (
               <TodoItem
-                key={todo.text}
-                index={index}
+                key={index}
+                id={todo.id}
                 text={todo.text}
                 completed={todo.completed}
-                onComplete={() => completeToggleTodo(todo.text)}
+                onComplete={() => completeToggleTodo(todo.id)}
                 onEdit={() => console.log("Editando")}
-                onDelete={() => deleteTodo(todo.text)}
+                onDelete={() => deleteTodo(todo.id)}
               />
             )}
           />
