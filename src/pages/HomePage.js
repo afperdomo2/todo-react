@@ -65,7 +65,7 @@ function HomePage() {
             onError={() => <TodosError />}
             onLoading={() => <TodosLoading />}
             onEmpty={() => <TodosEmpty />}
-            render={(todo, index) => (
+            render={(todo) => (
               <TodoItem
                 id={todo.id}
                 key={todo.id}

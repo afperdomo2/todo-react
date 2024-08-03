@@ -1,13 +1,17 @@
-import React from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
-function TodoForm({ addTodo }) {
+function TodoForm(props) {
   const navigate = useNavigate();
-  const { pathname } = useLocation();
-  const [newTodoValue, setNewTodoValue] = React.useState("");
+  const params = useParams();
 
-  const isEditing = pathname.includes("/edit/");
-  // const todoId = pathname.replace("/edit/", "");
+  const defaultValue = "";
+
+  console.log(props.searchedTodos);
+
+  const [newTodoValue, setNewTodoValue] = useState(defaultValue);
+
+  console.log("params", params);
 
   const onChange = (event) => {
     setNewTodoValue(event.target.value);
@@ -18,10 +22,12 @@ function TodoForm({ addTodo }) {
     if (newTodoValue === "") {
       return alert("Escriba una tarea");
     }
-    addTodo(newTodoValue);
-    setNewTodoValue("");
-    if (isEditing) {
+    if (params.id) {
       navigate("/");
+      props.updateTodo(params.id, newTodoValue);
+    } else {
+      setNewTodoValue("");
+      props.addTodo(newTodoValue);
     }
   };
 
@@ -41,7 +47,7 @@ function TodoForm({ addTodo }) {
           />
         </div>
         <div className="col-md-4 d-flex justify-content-between">
-          {isEditing && (
+          {params.id && (
             <button
               type="button"
               className="btn btn-danger form-control me-2"
@@ -51,7 +57,7 @@ function TodoForm({ addTodo }) {
             </button>
           )}
           <button type="submit" className="btn btn-success form-control">
-            {isEditing ? "Editar" : "Agregar"}
+            {params.id ? "Editar" : "Agregar"}
           </button>
         </div>
       </div>

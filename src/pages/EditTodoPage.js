@@ -3,7 +3,7 @@ import { useTodos } from "../hooks/useTodos";
 
 function EditTodoPage() {
   const { stateUpdaters } = useTodos();
-  const { addTodo } = stateUpdaters;
+  const { updateTodo } = stateUpdaters;
 
   return (
     <div className="d-flex justify-content-center">
@@ -13,7 +13,7 @@ function EditTodoPage() {
         </div>
 
         <div className="card-body">
-          <TodoForm addTodo={addTodo} />
+          <TodoForm updateTodo={updateTodo} />
         </div>
       </div>
     </div>
