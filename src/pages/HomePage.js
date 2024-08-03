@@ -79,7 +79,7 @@ function HomePage() {
           />
 
           <Modal>
-            <TodoForm addTodo={addTodo} loading={loading} />
+            <TodoForm addTodo={addTodo} />
           </Modal>
 
           <CreateTodoButton loading={loading} />

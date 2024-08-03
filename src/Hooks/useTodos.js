@@ -54,6 +54,11 @@ function useTodos() {
     saveTodos(newTodos);
   };
 
+  const getTodo = (id) => {
+    const found = todos.find((todo) => todo.id === id);
+    return found;
+  };
+
   const completeToggleTodo = (id) => {
     const todoIndex = todos.findIndex((todo) => todo.id === id);
     const newTodos = [...todos];
@@ -75,6 +80,7 @@ function useTodos() {
     completedTodos,
     searchValue,
     searchedTodos,
+    getTodo,
   };
 
   const stateUpdaters = {

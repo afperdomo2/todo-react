@@ -5,13 +5,7 @@ function TodoForm(props) {
   const navigate = useNavigate();
   const params = useParams();
 
-  const defaultValue = "";
-
-  console.log(props.searchedTodos);
-
-  const [newTodoValue, setNewTodoValue] = useState(defaultValue);
-
-  console.log("params", params);
+  const [newTodoValue, setNewTodoValue] = useState(props.defaultValue);
 
   const onChange = (event) => {
     setNewTodoValue(event.target.value);
