@@ -35,8 +35,8 @@ function HomePage() {
     sincronizeTodos,
   } = stateUpdaters;
 
-  const editTodo = (id) => {
-    navigate(`/edit/${id}`);
+  const editTodo = (todo) => {
+    navigate(`/edit/${todo.id}`, { state: { todo } });
   };
 
   return (
@@ -72,7 +72,7 @@ function HomePage() {
                 text={todo.text}
                 completed={todo.completed}
                 onComplete={() => completeToggleTodo(todo.id)}
-                onEdit={() => editTodo(todo.id)}
+                onEdit={() => editTodo(todo)}
                 onDelete={() => deleteTodo(todo.id)}
               />
             )}

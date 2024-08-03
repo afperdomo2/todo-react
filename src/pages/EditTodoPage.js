@@ -1,17 +1,16 @@
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
+
 import { TodoForm } from "../components/TodoForm";
-import { useTodos } from "../hooks/useTodos";
 import { TodosLoading } from "../components/TodosLoading";
+import { useTodos } from "../hooks/useTodos";
 
 function EditTodoPage() {
+  const location = useLocation();
   const params = useParams();
   const { states, stateUpdaters } = useTodos();
 
   const { loading, getTodo } = states;
   const { updateTodo } = stateUpdaters;
-
-  const id = params.id;
-  const todo = loading ? "" : getTodo(id);
 
   return (
     <div className="d-flex justify-content-center">
@@ -21,10 +20,18 @@ function EditTodoPage() {
         </div>
 
         <div className="card-body">
-          {loading ? (
+          {location.state?.todo ? (
+            <TodoForm
+              updateTodo={updateTodo}
+              defaultValue={location.state.todo.text}
+            />
+          ) : loading ? (
             <TodosLoading />
           ) : (
-            <TodoForm updateTodo={updateTodo} defaultValue={todo.text} />
+            <TodoForm
+              updateTodo={updateTodo}
+              defaultValue={getTodo(params.id).text}
+            />
           )}
         </div>
       </div>
