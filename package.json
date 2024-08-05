@@ -18,7 +18,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "deploy:clear": "gh-pages-clean gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -39,7 +40,7 @@
     ]
   },
   "devDependencies": {
-    "gh-pages": "^5.0.0"
+    "gh-pages": "^6.1.1"
   },
   "homepage": "https://github.com/afperdomo2/todo-react"
 }
