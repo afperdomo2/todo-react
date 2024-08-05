@@ -1,5 +1,6 @@
 import React from "react";
 
+import { useNavigate } from "react-router-dom";
 import { ChangeAlert } from "../components/ChangeAlert";
 import { CreateTodoButton } from "../components/CreateTodoButton";
 import { Modal } from "../components/Modal";
@@ -13,7 +14,6 @@ import { TodosEmpty } from "../components/TodosEmpty";
 import { TodosError } from "../components/TodosError";
 import { TodosLoading } from "../components/TodosLoading";
 import { useTodos } from "../hooks/useTodos";
-import { useNavigate } from "react-router-dom";
 
 function HomePage() {
   const navigate = useNavigate();
