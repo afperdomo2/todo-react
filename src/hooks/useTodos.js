@@ -9,7 +9,7 @@
  */
 import React from "react";
 
-import { newTodoId } from "../utils/totoUtil";
+import { newTodoId } from "../utils/todoUtil";
 import { useLocalStorage } from "./useLocalStorage";
 
 function useTodos() {
